@@ -1,12 +1,27 @@
 # Kind's Anker Optimizer
 
-Server-side Fabric mod that smooths Respawn Anchor explosions by queuing them and
-processing a small number per tick to reduce lag spikes.
+Essential lag‑smoothing for respawn anchor explosions on Fabric servers.
+
+Kind's Anker Optimizer is a server‑side Fabric mod that smooths respawn anchor
+explosions by queuing them and processing a small number per tick. This reduces
+TPS spikes during mass detonations while keeping vanilla behavior intact.
 
 ## Features
-- Reduces lag spikes from mass respawn anchor explosions.
-- Server-side only.
-- Configurable per-tick explosion budget.
+- Reduces lag spikes from mass respawn anchor explosions
+- Server‑side only (no client required)
+- Configurable per‑tick explosion budget
+- Vanilla behavior preserved
+
+## How It Works
+- Intercepts respawn anchor explosions in the Overworld/End
+- Removes the anchor block immediately
+- Queues the explosion instead of detonating instantly
+- Executes a limited number of queued explosions per server tick
+
+## Usage (Servers)
+1. Install Fabric Loader.
+2. Download the jar from Modrinth or GitHub Releases.
+3. Drop the jar into your `mods` folder and restart the server.
 
 ## Configuration
 File: `config/kinds_anker_optimizer.json`
@@ -16,6 +31,11 @@ File: `config/kinds_anker_optimizer.json`
   "maxExplosionsPerTick": 2
 }
 ```
+
+Recommended values:
+- `2` for small servers
+- `4` for medium servers
+- `6` for larger servers
 
 ## Compatibility
 - Minecraft: 1.21.1–1.21.11
