@@ -24,6 +24,10 @@ public final class AnchorExplosionQueue {
     }
 
     private static void onEndServerTick(MinecraftServer server) {
+        if (!ModConfig.get().enabled) {
+            return;
+        }
+
         int budget = ModConfig.get().maxExplosionsPerTick;
         while (budget > 0 && !QUEUE.isEmpty()) {
             QueuedExplosion next = QUEUE.pollFirst();

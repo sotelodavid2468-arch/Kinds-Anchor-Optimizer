@@ -23,6 +23,10 @@ public final class RespawnAnchorBlockMixin {
             return;
         }
 
+        if (!com.kinds.ankeroptimizer.ModConfig.get().enabled) {
+            return;
+        }
+
         world.removeBlock(explodedPos, false);
         AnchorExplosionQueue.enqueue(serverWorld, explodedPos);
         ci.cancel();

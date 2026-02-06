@@ -55,9 +55,13 @@ final class ModConfig {
     }
 
     static final class Config {
+        boolean enabled = true;
         int maxExplosionsPerTick = 2;
 
         void sanitize() {
+            if (!enabled) {
+                return;
+            }
             if (maxExplosionsPerTick < 1) {
                 maxExplosionsPerTick = 1;
             }

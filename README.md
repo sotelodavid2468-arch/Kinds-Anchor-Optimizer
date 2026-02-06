@@ -11,6 +11,7 @@ TPS spikes during mass detonations while keeping vanilla behavior intact.
 - Server‑side only (no client required)
 - Configurable per‑tick explosion budget
 - Vanilla behavior preserved
+ - Server-side opt‑out via config
 
 ## How It Works
 - Intercepts respawn anchor explosions in the Overworld/End
@@ -28,6 +29,7 @@ File: `config/kinds_anker_optimizer.json`
 
 ```json
 {
+  "enabled": true,
   "maxExplosionsPerTick": 2
 }
 ```
@@ -36,6 +38,13 @@ Recommended values:
 - `2` for small servers
 - `4` for medium servers
 - `6` for larger servers
+
+To disable the mod’s behavior (server-side opt‑out), set:
+```json
+{
+  "enabled": false
+}
+```
 
 ## Compatibility
 - Minecraft: 1.21.1–1.21.11
