@@ -58,7 +58,37 @@ Channels:
 - `kinds_anchor_optimizer:opt_out`
 - `kinds_anchor_optimizer:opt_out_ack`
 
-## New Files (Opt‑Out Support)
+### Plugin Messaging Protocol
+
+Handshake (v1.0.5+)
+
+Step | Direction | Channel | Payload
+---|---|---|---
+1 | Server → Client | `kinds_anchor_optimizer:opt_out` | Empty
+2 | Client → Server | `kinds_anchor_optimizer:opt_out_ack` | Empty
+
+### Example Implementation (Fabric API)
+
+```java
+// Server: send opt-out on join when enabled
+ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+    if (!ModConfig.get().requestClientOptOut) {
+        return;
+    }
+    ServerPlayNetworking.send(handler.player, new OptOutPayload());
+});
+
+// Client: mark server as opted out and send ack
+ClientPlayNetworking.registerGlobalReceiver(OptOutPayloads.OPT_OUT_ID, (payload, context) -> {
+    String key = currentServerKey();
+    if (key != null) {
+        OPTED_OUT_SERVERS.add(key);
+    }
+    context.responseSender().sendPacket(new OptOutAckPayload());
+});
+```
+
+### Files Added (Opt‑Out Support)
 - `src/main/java/com/kinds/ankeroptimizer/KindsAnkerOptimizerClient.java`
 - `src/main/java/com/kinds/ankeroptimizer/OptOutNetworking.java`
 - `src/main/java/com/kinds/ankeroptimizer/OptOutPayloads.java`
