@@ -12,7 +12,7 @@ TPS spikes during mass detonations while keeping vanilla behavior intact.
 - Adaptive per‑tick explosion budget based on player count
 - Vanilla behavior preserved
 - Server-side opt‑out via config
- - Optional server‑requested client opt‑out
+- Optional server‑requested client opt‑out (per server address)
 
 ## How It Works
 - Intercepts respawn anchor explosions in the Overworld/End
@@ -48,6 +48,20 @@ To request a client opt‑out on join (server‑controlled), set:
   "requestClientOptOut": true
 }
 ```
+
+## Server‑Requested Client Opt‑Out (Implemented)
+When `requestClientOptOut` is enabled, the server sends a custom payload to the
+client on join. The client disables the mod for that server address and sends an
+acknowledgment back. The opt‑out is cleared when the player disconnects.
+
+Channels:
+- `kinds_anchor_optimizer:opt_out`
+- `kinds_anchor_optimizer:opt_out_ack`
+
+## New Files (Opt‑Out Support)
+- `src/main/java/com/kinds/ankeroptimizer/KindsAnkerOptimizerClient.java`
+- `src/main/java/com/kinds/ankeroptimizer/OptOutNetworking.java`
+- `src/main/java/com/kinds/ankeroptimizer/OptOutPayloads.java`
 
 
 ## Compatibility
