@@ -4,7 +4,7 @@
   "version_number": "0.1.0",
   "version_type": "beta",
   "summary": "Defuse respawn anchor lag spikes by smart-queueing explosions for smooth, stable TPS.",
-  "description": "Server-side Fabric mod that smooths respawn anchor explosions by queuing them and executing a small number per tick. This reduces sudden TPS drops during mass anchor detonations while keeping vanilla behavior intact. Includes a server-side opt-out via config.",
+  "description": "Server-side Fabric mod that smooths respawn anchor explosions by queuing them and executing a small number per tick. This reduces sudden TPS drops during mass anchor detonations while keeping vanilla behavior intact. The per-tick budget adapts to player count. A server-side opt-out is available via config, and an optional server-requested client opt-out can be enabled.",
   "license_id": "ARR",
   "game_versions": ["1.21.1","1.21.2","1.21.3","1.21.4","1.21.5","1.21.6","1.21.7","1.21.8","1.21.9","1.21.10","1.21.11"],
   "loaders": ["fabric"],

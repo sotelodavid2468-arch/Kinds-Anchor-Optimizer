@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import net.fabricmc.loader.api.FabricLoader;
 
-final class ModConfig {
+public final class ModConfig {
     private static final String FILE_NAME = "kinds_anker_optimizer.json";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static Config config = new Config();
@@ -18,13 +18,13 @@ final class ModConfig {
     private ModConfig() {
     }
 
-    static void init() {
+    public static void init() {
         Path path = FabricLoader.getInstance().getConfigDir().resolve(FILE_NAME);
         config = load(path);
         save(path, config);
     }
 
-    static Config get() {
+    public static Config get() {
         return config;
     }
 
@@ -54,19 +54,13 @@ final class ModConfig {
         }
     }
 
-    static final class Config {
-        boolean enabled = true;
-        int maxExplosionsPerTick = 2;
+    public static final class Config {
+        public boolean enabled = true;
+        public boolean requestClientOptOut = false;
 
         void sanitize() {
             if (!enabled) {
                 return;
-            }
-            if (maxExplosionsPerTick < 1) {
-                maxExplosionsPerTick = 1;
-            }
-            if (maxExplosionsPerTick > 20) {
-                maxExplosionsPerTick = 20;
             }
         }
     }

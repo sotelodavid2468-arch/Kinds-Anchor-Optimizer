@@ -28,7 +28,7 @@ public final class AnchorExplosionQueue {
             return;
         }
 
-        int budget = ModConfig.get().maxExplosionsPerTick;
+        int budget = calculateBudget(server);
         while (budget > 0 && !QUEUE.isEmpty()) {
             QueuedExplosion next = QUEUE.pollFirst();
             if (next == null) {
@@ -51,6 +51,23 @@ public final class AnchorExplosionQueue {
 
             budget--;
         }
+    }
+
+    private static int calculateBudget(MinecraftServer server) {
+        int players = server.getPlayerManager().getCurrentPlayerCount();
+        if (players <= 5) {
+            return 2;
+        }
+        if (players <= 15) {
+            return 3;
+        }
+        if (players <= 30) {
+            return 4;
+        }
+        if (players <= 60) {
+            return 5;
+        }
+        return 6;
     }
 
     private record QueuedExplosion(ServerWorld world, BlockPos pos) {

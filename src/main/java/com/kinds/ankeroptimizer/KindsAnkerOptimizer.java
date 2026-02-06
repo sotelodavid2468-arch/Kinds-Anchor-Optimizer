@@ -7,5 +7,6 @@ public final class KindsAnkerOptimizer implements ModInitializer {
     public void onInitialize() {
         ModConfig.init();
         AnchorExplosionQueue.init();
+        OptOutNetworking.init();
     }
 }
