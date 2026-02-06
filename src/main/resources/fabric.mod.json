@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "Server-side respawn anchor explosion lag smoother (queues explosions to reduce spikes).",
+  "authors": ["KinditMc"],
+  "contact": {
+    "homepage": "https://modrinth.com"
+  },
+  "license": "All Rights Reserved",
+  "icon": "assets/kinds_anker_optimizer/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.kinds.ankeroptimizer.KindsAnkerOptimizer"
+    ]
+  },
+  "mixins": [
+    "kinds_anker_optimizer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric": "*",
+    "minecraft": ">=1.21.1 <=1.21.11"
+  }
+}

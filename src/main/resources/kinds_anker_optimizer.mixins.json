@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.kinds.ankeroptimizer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "RespawnAnchorBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
