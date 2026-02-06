@@ -6,7 +6,9 @@
   "description": "Server-side respawn anchor explosion lag smoother that queues explosions across ticks to reduce spikes.",
   "authors": ["KinditMc"],
   "contact": {
-    "homepage": "https://modrinth.com"
+    "homepage": "https://modrinth.com",
+    "sources": "https://github.com/sotelodavid2468-arch/Kinds-Anchor-Optimizer",
+    "issues": "https://github.com/sotelodavid2468-arch/Kinds-Anchor-Optimizer/issues"
   },
   "license": "All Rights Reserved",
   "icon": "assets/kinds_anker_optimizer/icon.png",
