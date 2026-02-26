@@ -1,40 +1,34 @@
 # Kind's Anchor Optimizer
 
-Client-side Fabric mod for faster respawn-anchor use.
+Client-side Fabric mod for cleaner respawn-anchor timing.
 
-This version lowers local right-click use cooldown when you're doing anchor
-combos, so anchoring feels faster and less delayed.
+This build keeps anchor use responsive but adds a vanilla-safe multiplayer
+limit so it does not look like a hard cheat boost.
 
 ## What it does
 - Client-side only
-- Speeds up anchor use by lowering `itemUseCooldown` during anchor context
-- Keeps server-requested opt-out support
-- Lets you tune cooldown in config
+- Faster anchor timing by lowering local `itemUseCooldown` in anchor context
+- Server opt-out handshake is still supported
+- Vanilla-safe multiplayer limiter enabled by default
 
 ## Config
 File: `config/kinds_anker_optimizer.json`
 
-```json
-{
-  "enabled": true,
-  "fastAnchorUse": true,
-  "anchorUseCooldownTicks": 0,
-  "onlyWhileUsingAnchorItems": true
-}
-```
+The config file is generated automatically on first launch.
+You can tune speed, context checks, and vanilla-safe multiplayer limits there.
 
-Notes:
-- `anchorUseCooldownTicks`: `0` is fastest, `4` matches normal behavior.
-- `onlyWhileUsingAnchorItems`: if `true`, optimization applies only when using
-  glowstone/respawn anchor or aiming at an anchor block.
+## Recommended settings
+- Singleplayer fast: `anchorUseCooldownTicks = 0`
+- Vanilla-safe multiplayer: `vanillaSafeMultiplayer = true` and `multiplayerMinCooldownTicks = 3`
+- Strict vanilla multiplayer: set `multiplayerMinCooldownTicks = 4`
 
 ## Server opt-out handshake
-If a server sends `kinds_anchor_optimizer:opt_out`, the client disables the
-optimization for that server address for the current session and replies with
+If a server sends `kinds_anchor_optimizer:opt_out`, this mod disables its speed
+logic for that server address during the current session and replies with
 `kinds_anchor_optimizer:opt_out_ack`.
 
 ## Compatibility
-- Minecraft: 1.21.1–1.21.11
+- Minecraft: 1.21.1-1.21.11
 - Loader: Fabric
 
 ## License

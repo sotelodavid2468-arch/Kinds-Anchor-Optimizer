@@ -59,6 +59,8 @@ public final class ModConfig {
         public boolean fastAnchorUse = true;
         public int anchorUseCooldownTicks = 0;
         public boolean onlyWhileUsingAnchorItems = true;
+        public boolean vanillaSafeMultiplayer = true;
+        public int multiplayerMinCooldownTicks = 3;
 
         void sanitize() {
             if (anchorUseCooldownTicks < 0) {
@@ -66,6 +68,12 @@ public final class ModConfig {
             }
             if (anchorUseCooldownTicks > 4) {
                 anchorUseCooldownTicks = 4;
+            }
+            if (multiplayerMinCooldownTicks < 0) {
+                multiplayerMinCooldownTicks = 0;
+            }
+            if (multiplayerMinCooldownTicks > 4) {
+                multiplayerMinCooldownTicks = 4;
             }
         }
     }

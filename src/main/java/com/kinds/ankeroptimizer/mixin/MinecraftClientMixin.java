@@ -32,6 +32,9 @@ public abstract class MinecraftClientMixin {
     @Shadow
     public HitResult crosshairTarget;
 
+    @Shadow
+    public abstract boolean isInSingleplayer();
+
     @Inject(method = "doItemUse", at = @At("TAIL"))
     private void kinds$reduceAnchorUseCooldown(CallbackInfo ci) {
         ModConfig.Config config = ModConfig.get();
@@ -49,6 +52,10 @@ public abstract class MinecraftClientMixin {
         }
 
         int targetCooldown = config.anchorUseCooldownTicks;
+        if (config.vanillaSafeMultiplayer && !isInSingleplayer()) {
+            targetCooldown = Math.max(targetCooldown, config.multiplayerMinCooldownTicks);
+        }
+
         if (itemUseCooldown > targetCooldown) {
             itemUseCooldown = targetCooldown;
         }
