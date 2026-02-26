@@ -11,16 +11,8 @@ limit so it does not look like a hard cheat boost.
 - Server opt-out handshake is still supported
 - Vanilla-safe multiplayer limiter enabled by default
 
-## Config
-File: `config/kinds_anker_optimizer.json`
-
-The config file is generated automatically on first launch.
-You can tune speed, context checks, and vanilla-safe multiplayer limits there.
-
-## Recommended settings
-- Singleplayer fast: `anchorUseCooldownTicks = 0`
-- Vanilla-safe multiplayer: `vanillaSafeMultiplayer = true` and `multiplayerMinCooldownTicks = 3`
-- Strict vanilla multiplayer: set `multiplayerMinCooldownTicks = 4`
+## Setup
+No manual setup required. Drop the jar in your mods folder and launch.
 
 ## Server opt-out handshake
 If a server sends `kinds_anchor_optimizer:opt_out`, this mod disables its speed
