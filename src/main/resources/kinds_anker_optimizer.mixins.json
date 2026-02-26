@@ -3,8 +3,9 @@
   "minVersion": "0.8",
   "package": "com.kinds.ankeroptimizer.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "RespawnAnchorBlockMixin"
+  "mixins": [],
+  "client": [
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

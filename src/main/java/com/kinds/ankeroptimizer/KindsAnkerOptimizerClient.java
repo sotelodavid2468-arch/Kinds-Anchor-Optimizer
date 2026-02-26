@@ -6,6 +6,7 @@ import java.util.Set;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ServerInfo;
 
@@ -14,6 +15,11 @@ public final class KindsAnkerOptimizerClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ModConfig.init();
+
+        PayloadTypeRegistry.playS2C().register(OptOutPayloads.OPT_OUT_ID, OptOutPayloads.OPT_OUT_CODEC);
+        PayloadTypeRegistry.playC2S().register(OptOutPayloads.OPT_OUT_ACK_ID, OptOutPayloads.OPT_OUT_ACK_CODEC);
+
         ClientPlayNetworking.registerGlobalReceiver(OptOutPayloads.OPT_OUT_ID, (payload, context) -> {
             String key = currentServerKey();
             if (key != null) {
@@ -25,7 +31,7 @@ public final class KindsAnkerOptimizerClient implements ClientModInitializer {
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> OPTED_OUT_SERVERS.clear());
     }
 
-    static boolean isOptedOutForCurrentServer() {
+    public static boolean isOptedOutForCurrentServer() {
         String key = currentServerKey();
         return key != null && OPTED_OUT_SERVERS.contains(key);
     }

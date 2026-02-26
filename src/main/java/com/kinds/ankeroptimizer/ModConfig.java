@@ -56,11 +56,16 @@ public final class ModConfig {
 
     public static final class Config {
         public boolean enabled = true;
-        public boolean requestClientOptOut = false;
+        public boolean fastAnchorUse = true;
+        public int anchorUseCooldownTicks = 0;
+        public boolean onlyWhileUsingAnchorItems = true;
 
         void sanitize() {
-            if (!enabled) {
-                return;
+            if (anchorUseCooldownTicks < 0) {
+                anchorUseCooldownTicks = 0;
+            }
+            if (anchorUseCooldownTicks > 4) {
+                anchorUseCooldownTicks = 4;
             }
         }
     }

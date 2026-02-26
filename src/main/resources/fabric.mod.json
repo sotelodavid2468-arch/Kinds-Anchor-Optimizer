@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${version}",
   "name": "${mod_name}",
-  "description": "Server-side respawn anchor explosion lag smoother that queues explosions across ticks to reduce spikes.",
+  "description": "Client-side anchor optimizer that reduces local use cooldown for faster respawn-anchor combos, with per-server opt-out support.",
   "authors": ["KinditMc"],
   "contact": {
     "homepage": "https://modrinth.com",
@@ -12,11 +12,8 @@
   },
   "license": "All Rights Reserved",
   "icon": "assets/kinds_anker_optimizer/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
-      "com.kinds.ankeroptimizer.KindsAnkerOptimizer"
-    ],
     "client": [
       "com.kinds.ankeroptimizer.KindsAnkerOptimizerClient"
     ]
